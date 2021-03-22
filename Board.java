@@ -19,7 +19,9 @@ public class Board {
                 } else {
                     symbol = ' ';
                 }
+                System.out.print(symbol);
             }
+            System.out.println();
         }
     }
     
