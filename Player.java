@@ -12,6 +12,14 @@ public class Player {
         this.direction = Direction.RIGHT;
     }
 
+    public int getX() {
+        return x;
+    }
+
+    public int getY() {
+        return y;
+    }
+
     public void setDirection(Direction d, int w, int h) {
         this.direction = d;
         move(w, h);
