@@ -1,8 +1,8 @@
 public class Card {
     private int x;
     private int y;
-    private boolean turned;
-    private boolean cleared;
+    private boolean turned = false;
+    private boolean cleared = false;
     private String symbol;
 
     public Card(int x, int y, String s) {
@@ -29,5 +29,9 @@ public class Card {
 
     public boolean isCleared() {
         return cleared;
+    }
+
+    public void clear() {
+        cleared = true;
     }
 }
