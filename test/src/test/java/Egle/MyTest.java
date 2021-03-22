@@ -7,7 +7,10 @@ import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNotSame;
 import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertSame;
+import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;
+import static org.hamcrest.CoreMatchers.is;
 
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -73,7 +76,7 @@ public class MyTest {
     //assertNull(object)
     @Test
     public void nullTest(){
-        assertNull(0);
+        assertNull(null);
     }
 
     //assertNotSame - kontrollib, kas objektid on identsed
@@ -84,7 +87,18 @@ public class MyTest {
         assertNotSame(24, output);
     }
 
-    
-    //assertSame
-    //assertThat
+    //assertSame - kontrollib, kas objektid on identsed
+    //assertSame(expected, actual)
+    @Test
+    public void SameTest(){
+        int output=my.square(5);
+        assertSame(25, output);
+    }
+
+    //assertThat - Sarnane assertEqual-ga, aga paindlikum
+    @Test
+    public void thattest(){
+        int nr=3;
+        assertThat(nr, is(3));
+    }
 }
