@@ -14,10 +14,10 @@ public class Board {
             for (int x = 0; x <= width; x++) {
                 if (y == 0 || y == height) {
                     symbol = '-';
-                } else if ( x == 0 || < == width) {
+                } else if ( x == 0 || x == width) {
                     symbol = '|';
                 } else {
-                    symbol = Character.toChars(9633);
+                    symbol = ' ';
                 }
             }
         }
