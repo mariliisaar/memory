@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Random;
 
 public class Board {
     private int width;
@@ -45,9 +46,21 @@ public class Board {
     private void createCards(int w, int h) { 
         for (int y = 0; y < h; y++) {
             for (int x = 0; x < w; x++) {
-                Card card = new Card(x, y, Symbol.getSymbol(1));
+                Card card = new Card(x, y);
                 cards.add(card);
             }
+        }
+        addSymbols(w * h);
+    }
+
+    private void addSymbols(int board) {
+        String[] symbols = new String[board];
+        for (int i = 0; i < symbols.length; i += 2) {
+            int r = (int)(Math.random() * cards.size() / 2 - 1) + 1;
+            System.out.println(r);
+            // cards.get(i).setSymbol(Symbol.getSymbol(r));
+            // System.out.println(cards.get(i).getSymbol());
+            // System.out.println(i + 1);
         }
     }
     

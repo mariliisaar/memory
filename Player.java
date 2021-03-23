@@ -2,6 +2,7 @@ public class Player {
     private int x;
     private int y;
     private String name;
+    private int score;
 
     private Direction direction;
 
@@ -22,6 +23,14 @@ public class Player {
 
     public String getName() {
         return name;
+    }
+
+    public int getScore() {
+        return score;
+    }
+
+    public void setScore(int score) {
+        this.score = score;
     }
 
     public void setDirection(Direction d, int w, int h) {

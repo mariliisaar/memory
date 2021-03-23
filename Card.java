@@ -5,10 +5,10 @@ public class Card {
     private boolean cleared = false;
     private String symbol;
 
-    public Card(int x, int y, String s) {
+    public Card(int x, int y) {
         this.x = x;
         this.y = y;
-        this.symbol = s;
+        // this.symbol = s;
     }
 
     public int getX() {
@@ -21,6 +21,10 @@ public class Card {
 
     public String getSymbol() {
         return symbol;
+    }
+
+    public void setSymbol(String symbol) {
+        this.symbol = symbol;
     }
 
     public boolean isTurned() {
