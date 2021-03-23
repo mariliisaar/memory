@@ -29,16 +29,18 @@ public class Main{
         gameBoard.render();
         while(!finishedGame){
             for(Player p:players){
-                System.out.println("Mängib " + p.getName());
-                finishedTurn = false;
-                cardsTurned = 0;
-                firstCard = null;
-                secondCard = null;
-                gameBoard.activePlayer(p);
-                while(!finishedTurn){
-                    input = scanner.nextLine().toLowerCase();
-                    playerTurn(input, p, gameBoard);
-                    gameBoard.render();
+                if(!finishedGame){
+                    System.out.println("Mängib " + p.getName());
+                    finishedTurn = false;
+                    cardsTurned = 0;
+                    firstCard = null;
+                    secondCard = null;
+                    gameBoard.activePlayer(p);
+                    while(!finishedTurn){
+                        input = scanner.nextLine().toLowerCase();
+                        playerTurn(input, p, gameBoard);
+                        gameBoard.render();
+                    }
                 }
             }
         }
@@ -48,11 +50,13 @@ public class Main{
             if(p.getScore() > highScore){
                 highScore = p.getScore();
                 winner = p.getName();
-            } else if(p.getScore() == highScore){
+            } else if(p.getScore() == highScore && highScore != 0){
                 winner = winner+" ja "+p.getName();
             } 
         }
-        System.out.println("Mängu võitis "+ winner +" "+ highScore + " punktiga.");
+        if(highScore>0){
+            System.out.println("Mängu võitis "+ winner +" "+ highScore + " punktiga.");
+        }
         scanner.close();
     }
 
@@ -80,7 +84,7 @@ public class Main{
             player.setDirection(Direction.UP, gameBoard);
         } else if (input.equals("s")){
             player.setDirection(Direction.DOWN, gameBoard);
-        } else if (input.equals(" ") && (firstCard == null || player.getX() != firstCard.getX() || player.getY() != firstCard.getY())){
+        } else if (input.equals(" ") && (firstCard == null || player.getX() != firstCard.getX() || player.getY() != firstCard.getY()) && !gameBoard.isCardCleared(player.getX(), player.getY())){
             cardsTurned++;
             if(cardsTurned==1){
                 firstCard = gameBoard.getCard(player.getX(), player.getY());
@@ -88,6 +92,8 @@ public class Main{
                 secondCard = gameBoard.getCard(player.getX(), player.getY());
                 gameBoard.render();
             }
+        } else if (input.equals(" ") && gameBoard.isCardCleared(player.getX(), player.getY())){
+            System.out.println("Valitud kaart on juba leitud. Valige muu kaart.");
         }else if (input.equals("quit")){
             finishedGame = true;
             finishedTurn = true;
