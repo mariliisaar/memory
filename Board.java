@@ -33,13 +33,10 @@ public class Board {
         return height;
     }
 
+    // render board
     public void render() {
         String symbol = "▯ ";
-        int counter = 0;
-        if(player != null) {
-            System.out.println(player.getX() + ";" + player.getY());
-        }
-        
+        int counter = 0;        
         for (int y = 0; y < height; y++) {
             for (int x = 0; x < width; x++) {
                 colour = ANSI_RESET;
@@ -52,7 +49,6 @@ public class Board {
                 } else {
                     symbol = "▯ ";
                 }
-                // symbol = cards.get(counter).getSymbol() + " ";
                 counter++;
 
                 System.out.print(colour + symbol + ANSI_RESET);
@@ -61,6 +57,7 @@ public class Board {
         }
     }
 
+    // Create a card for each of the board's squares
     private void createCards(int w, int h) { 
         for (int y = 0; y < h; y++) {
             for (int x = 0; x < w; x++) {
@@ -71,6 +68,7 @@ public class Board {
         addSymbols(w * h);
     }
 
+    // Add symbols to the cards
     private void addSymbols(int board) {
         String[] symbols = new String[board];
         int counter = 0;
@@ -79,13 +77,14 @@ public class Board {
             symbols[i + 1] = Symbol.getSymbol(counter);
             counter++;
         }
+        // Randomise the location of the symbols
         shuffleArray(symbols);
         for(int i = 0; i < cards.size(); i++) {
             cards.get(i).setSymbol(symbols[i]);
         }
     }
 
-    // Implementing Fisher–Yates shuffle ( https://stackoverflow.com/questions/1519736/random-shuffling-of-an-array )
+    // Fisher–Yates shuffle ( https://stackoverflow.com/questions/1519736/random-shuffling-of-an-array )
     static String[] shuffleArray(String[] ar) {
         Random rnd = ThreadLocalRandom.current();
         for (int i = ar.length - 1; i > 0; i--) {
@@ -96,9 +95,24 @@ public class Board {
         }
         return ar;
     }
+
+    // Send the card to the gameboard
+    public Card getCard(int x, int y) {
+        return cards.get(width * y + x);
+    }
     
+    // Mark the card as having been cleared
     public void clearCard(int x, int y) {
         int i = width * y + x;
         cards.get(i).clear();
+    }
+
+    // Reset cards that haven't been cleared
+    public void resetCards() {
+        for (Card c : cards) {
+            if (!c.isCleared()) {
+                c.turnCard();
+            }
+        }
     }
 }

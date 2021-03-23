@@ -32,7 +32,11 @@ public class Card {
     }
 
     public void turnCard() {
-        turned = true;
+        if (turned) {
+            turned = false;
+        } else {
+            turned = true;
+        }        
     }
 
     public boolean isCleared() {
