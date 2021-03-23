@@ -42,6 +42,17 @@ public class Main{
                 }
             }
         }
+        String winner = "";
+        int highScore = 0;
+        for(Player p:players){
+            if(p.getScore() > highScore){
+                highScore = p.getScore();
+                winner = p.getName();
+            } else if(p.getScore() == highScore){
+                winner = winner+" ja "+p.getName();
+            } 
+        }
+        System.out.println("Mängu võitis "+ winner +" "+ highScore + " punktiga.");
         scanner.close();
     }
 
@@ -69,12 +80,13 @@ public class Main{
             player.setDirection(Direction.UP, gameBoard);
         } else if (input.equals("s")){
             player.setDirection(Direction.DOWN, gameBoard);
-        } else if (input.equals(" ") && (!(player.getX() == firstCard.getX() && player.getY() == firstCard.getY()) || firstCard == null)){
+        } else if (input.equals(" ") && (firstCard == null || player.getX() != firstCard.getX() || player.getY() != firstCard.getY())){
             cardsTurned++;
             if(cardsTurned==1){
                 firstCard = gameBoard.getCard(player.getX(), player.getY());
             } else {
                 secondCard = gameBoard.getCard(player.getX(), player.getY());
+                gameBoard.render();
             }
         }else if (input.equals("quit")){
             finishedGame = true;
