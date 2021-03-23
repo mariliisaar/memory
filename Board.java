@@ -1,4 +1,6 @@
 import java.util.ArrayList;
+import java.util.Random;
+import java.util.concurrent.ThreadLocalRandom;
 
 public class Board {
     private int width;
@@ -42,6 +44,7 @@ public class Board {
                 } else {
                     symbol = "▯ ";
                 }
+                // symbol = cards.get(counter).getSymbol() + " ";
                 counter++;
 
                 System.out.print(colour + symbol + ANSI_RESET);
@@ -62,13 +65,28 @@ public class Board {
 
     private void addSymbols(int board) {
         String[] symbols = new String[board];
+        int counter = 0;
         for (int i = 0; i < symbols.length; i += 2) {
-            int r = (int)(Math.random() * cards.size() / 2 - 1) + 1;
-            System.out.println(r);
-            // cards.get(i).setSymbol(Symbol.getSymbol(r));
-            // System.out.println(cards.get(i).getSymbol());
-            // System.out.println(i + 1);
+            symbols[i] = Symbol.getSymbol(counter);
+            symbols[i + 1] = Symbol.getSymbol(counter);
+            counter++;
         }
+        shuffleArray(symbols);
+        for(int i = 0; i < cards.size(); i++) {
+            cards.get(i).setSymbol(symbols[i]);
+        }
+    }
+
+    // Implementing Fisher–Yates shuffle ( https://stackoverflow.com/questions/1519736/random-shuffling-of-an-array )
+    static String[] shuffleArray(String[] ar) {
+        Random rnd = ThreadLocalRandom.current();
+        for (int i = ar.length - 1; i > 0; i--) {
+            int index = rnd.nextInt(i + 1);
+            String a = ar[index];
+            ar[index] = ar[i];
+            ar[i] = a;
+        }
+        return ar;
     }
     
     public void clearCard(int x, int y) {
