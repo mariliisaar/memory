@@ -44,7 +44,7 @@ public class Board {
                     colour = ANSI_GREEN;
                 }
 
-                if (cards.get(counter).isCleared()) {
+                if (cards.get(counter).isCleared() || cards.get(counter).isTurned()) {
                     symbol = cards.get(counter).getSymbol() + " ";
                 } else {
                     symbol = "▯ ";
