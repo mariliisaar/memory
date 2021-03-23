@@ -4,6 +4,9 @@ import java.util.Scanner;
 public class Main{
     public static int playerCount = 0;
     public static int cardsTurned = 0;
+    public static int pairsFound = 0;
+    public static Card firstCard;
+    public static Card secondCard;
     public static boolean playersChosen = false;
     public static boolean finishedGame = false;
     public static boolean finishedTurn = false;
@@ -29,6 +32,8 @@ public class Main{
                 System.out.println("Mängib " + p.getName());
                 finishedTurn = false;
                 cardsTurned = 0;
+                firstCard = null;
+                secondCard = null;
                 gameBoard.activePlayer(p);
                 while(!finishedTurn){
                     input = scanner.nextLine().toLowerCase();
@@ -64,14 +69,29 @@ public class Main{
             player.setDirection(Direction.UP, gameBoard);
         } else if (input.equals("s")){
             player.setDirection(Direction.DOWN, gameBoard);
-        } else if (input.equals(" ")){
+        } else if (input.equals(" ") /*&& !(player.getX() == firstCard.getX() && player.getY() == firstCard.getY())*/){
             cardsTurned++;
+            if(cardsTurned==1){
+                firstCard = gameBoard.getCard(player.getX(), player.getY());
+            } else {
+                secondCard = gameBoard.getCard(player.getX(), player.getY());
+            }
         }else if (input.equals("quit")){
             finishedGame = true;
             finishedTurn = true;
         }
         if(cardsTurned==2){
+            if (firstCard.getSymbol().equals(secondCard.getSymbol())){
+                player.setScore(player.getScore() + 1);
+                gameBoard.clearCard(firstCard.getX(), firstCard.getY());
+                gameBoard.clearCard(secondCard.getX(), secondCard.getY());
+                pairsFound++;
+            }
             finishedTurn = true;
+            System.out.println(player.getName()+": "+player.getScore() +" punkti");
+            if(pairsFound == 8){
+                finishedGame = true;
+            }
         }
     }
 }
