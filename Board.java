@@ -36,6 +36,10 @@ public class Board {
     public void render() {
         String symbol = "▯ ";
         int counter = 0;
+        if(player != null) {
+            System.out.println(player.getX() + ";" + player.getY());
+        }
+        
         for (int y = 0; y < height; y++) {
             for (int x = 0; x < width; x++) {
                 colour = ANSI_RESET;

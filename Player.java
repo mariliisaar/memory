@@ -44,18 +44,18 @@ public class Player {
                 if (this.y > 0) {
                     this.y--;
                 } else {
-                    this.y = h;
+                    this.y = h - 1;
                 }
                 break;
             case RIGHT:
-                if (this.x < w) {
+                if (this.x < w - 1) {
                     this.x++;
                 } else {
                     this.x = 0;
                 }
                 break;
             case DOWN:
-                if (this.y < h) {
+                if (this.y < h - 1) {
                     this.y++;
                 } else {
                     this.y = 0;
@@ -65,7 +65,7 @@ public class Player {
                 if (this.x > 0) {
                     this.x--;
                 } else {
-                    this.x = w;
+                    this.x = w - 1;
                 }
                 break;
             default:
