@@ -30,7 +30,7 @@ public class Board {
                 }
 
                 if (cards.get(counter).isCleared()) {
-                    symbol = cards.get(x + y).getSymbol() + " ";
+                    symbol = cards.get(counter).getSymbol() + " ";
                 } else {
                     symbol = "▯ ";
                 }

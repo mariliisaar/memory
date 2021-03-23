@@ -27,6 +27,10 @@ public class Card {
         return turned;
     }
 
+    public void turnCard() {
+        turned = true;
+    }
+
     public boolean isCleared() {
         return cleared;
     }

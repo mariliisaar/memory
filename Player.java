@@ -20,6 +20,10 @@ public class Player {
         return y;
     }
 
+    public String getName() {
+        return name;
+    }
+
     public void setDirection(Direction d, int w, int h) {
         this.direction = d;
         move(w, h);
