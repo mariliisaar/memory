@@ -62,6 +62,9 @@ public class Main{
             player.setDirection(Direction.DOWN, gameBoard);
         } else if (input.equals(" ")){
 
+        }else if (input.equals("quit")){
+            finishedGame = true;
+            finishedTurn = true;
         }
     }
 }
