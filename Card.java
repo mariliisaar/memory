@@ -1,4 +1,4 @@
-public class Card {
+public class Card implements MovableObject {
     private int x;
     private int y;
     private boolean turned = false;

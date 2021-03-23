@@ -1,4 +1,4 @@
-public class Player {
+public class Player implements MovableObject {
     private int x;
     private int y;
     private String name;
