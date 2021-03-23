@@ -31,13 +31,13 @@ public class Card {
         return turned;
     }
 
-    public void turnCard() {
-        if (turned) {
-            turned = false;
-        } else {
-            turned = true;
-        }        
+    public void turnCardUp() {
+            turned = true;       
     }
+
+    public void turnCardDown() {
+        turned = false;       
+}
 
     public boolean isCleared() {
         return cleared;

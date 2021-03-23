@@ -100,7 +100,7 @@ public class Board {
     public Card getCard(int x, int y) {
         System.out.println("Get Card");
         Card c = cards.get(width * y + x);
-        c.turnCard();
+        c.turnCardUp();
         System.out.println(c.isTurned());
         return c;
     }
@@ -115,7 +115,7 @@ public class Board {
     public void resetCards() {
         for (Card c : cards) {
             if (!c.isCleared()) {
-                c.turnCard();
+                c.turnCardDown();
             }
         }
     }
