@@ -3,6 +3,7 @@ import java.util.Scanner;
 
 public class Main{
     public static int playerCount = 0;
+    public static int cardsTurned = 0;
     public static boolean playersChosen = false;
     public static boolean finishedGame = false;
     public static boolean finishedTurn = false;
@@ -11,7 +12,6 @@ public class Main{
         String input = "";
         Scanner scanner = new Scanner(System.in);
         Board gameBoard = new Board(4,4);
-        gameBoard.render();
         System.out.println("Mängida saavad kuni neli mängijat. ");
         while(!playersChosen && playerCount <4){
             String playerName = "";
@@ -22,9 +22,14 @@ public class Main{
         /*for(Player p:players){
             System.out.println(p.getName());
         }*/
+        gameBoard.activePlayer(players.get(0));
         gameBoard.render();
         while(!finishedGame){
             for(Player p:players){
+                System.out.println("Mängib " + p.getName());
+                finishedTurn = false;
+                cardsTurned = 0;
+                gameBoard.activePlayer(p);
                 while(!finishedTurn){
                     input = scanner.nextLine().toLowerCase();
                     playerTurn(input, p, gameBoard);
@@ -49,7 +54,6 @@ public class Main{
     }
 
     public static void playerTurn(String input, Player player, Board gameBoard){
-        gameBoard.activePlayer(player);
         if (input.equals("")){
             player.move(gameBoard.getWidth(), gameBoard.getHeight());
         } else if (input.equals("a")){
@@ -61,9 +65,12 @@ public class Main{
         } else if (input.equals("s")){
             player.setDirection(Direction.DOWN, gameBoard);
         } else if (input.equals(" ")){
-
+            cardsTurned++;
         }else if (input.equals("quit")){
             finishedGame = true;
+            finishedTurn = true;
+        }
+        if(cardsTurned==2){
             finishedTurn = true;
         }
     }
