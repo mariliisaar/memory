@@ -97,8 +97,8 @@ public class Board {
     }
 
     // Send the card to the gameboard
-    public String getCard(int x, int y) {
-        return cards.get(width * y + x).getSymbol();
+    public Card getCard(int x, int y) {
+        return cards.get(width * y + x);
     }
     
     // Mark the card as having been cleared
