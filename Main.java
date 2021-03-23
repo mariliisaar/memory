@@ -69,7 +69,7 @@ public class Main{
             player.setDirection(Direction.UP, gameBoard);
         } else if (input.equals("s")){
             player.setDirection(Direction.DOWN, gameBoard);
-        } else if (input.equals(" ") /*&& !(player.getX() == firstCard.getX() && player.getY() == firstCard.getY())*/){
+        } else if (input.equals(" ") && (!(player.getX() == firstCard.getX() && player.getY() == firstCard.getY()) || firstCard == null)){
             cardsTurned++;
             if(cardsTurned==1){
                 firstCard = gameBoard.getCard(player.getX(), player.getY());
@@ -88,6 +88,7 @@ public class Main{
                 pairsFound++;
             }
             finishedTurn = true;
+            gameBoard.resetCards();
             System.out.println(player.getName()+": "+player.getScore() +" punkti");
             if(pairsFound == 8){
                 finishedGame = true;
