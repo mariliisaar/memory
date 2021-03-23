@@ -109,6 +109,11 @@ public class Board {
         cards.get(i).clear();
     }
 
+    // Check if card has been cleared
+    public boolean isCardCleared(int x, int y) {
+        return cards.get(width * y + x).isCleared();
+    }
+
     // Reset cards that haven't been cleared
     public void resetCards() {
         for (Card c : cards) {

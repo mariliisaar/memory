@@ -8,7 +8,6 @@ public class Card {
     public Card(int x, int y) {
         this.x = x;
         this.y = y;
-        // this.symbol = s;
     }
 
     public int getX() {
