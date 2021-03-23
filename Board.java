@@ -98,8 +98,10 @@ public class Board {
 
     // Send the card to the gameboard
     public Card getCard(int x, int y) {
+        System.out.println("Get Card");
         Card c = cards.get(width * y + x);
         c.turnCard();
+        System.out.println(c.isTurned());
         return c;
     }
     
