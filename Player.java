@@ -33,9 +33,9 @@ public class Player {
         this.score = score;
     }
 
-    public void setDirection(Direction d, int w, int h) {
+    public void setDirection(Direction d, Board b) {
         this.direction = d;
-        move(w, h);
+        move(b.getWidth(), b.getHeight());
     }
 
     public void move(int w, int h) {

@@ -1,5 +1,4 @@
 import java.util.ArrayList;
-import java.util.Random;
 
 public class Board {
     private int width;
@@ -18,6 +17,14 @@ public class Board {
 
     public void activePlayer(Player p) {
         this.player = p;
+    }
+
+    public int getWidth() {
+        return width;
+    }
+
+    public int getHeight() {
+        return height;
     }
 
     public void render() {
