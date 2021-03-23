@@ -11,20 +11,24 @@ public class Board {
     public static final String ANSI_RESET = "\u001B[0m";
     public static final String ANSI_GREEN = "\u001B[32m";
 
+    // Initialise the board
     public Board(int width, int height) {
         this.width = width;
         this.height = height;
         createCards(width, height);
     }
 
+    // Set active player
     public void activePlayer(Player p) {
         this.player = p;
     }
 
+    // Get board width
     public int getWidth() {
         return width;
     }
 
+    // Get board height
     public int getHeight() {
         return height;
     }

@@ -41,31 +41,31 @@ public class Player {
     public void move(int w, int h) {
         switch(this.direction) {
             case UP:
-                if (this.y > 1) {
+                if (this.y > 0) {
                     this.y--;
                 } else {
-                    this.y = h - 1;
+                    this.y = h;
                 }
                 break;
             case RIGHT:
-                if (this.x < w - 1) {
+                if (this.x < w) {
                     this.x++;
                 } else {
-                    this.x = 1;
+                    this.x = 0;
                 }
                 break;
             case DOWN:
-                if (this.y < h - 1) {
+                if (this.y < h) {
                     this.y++;
                 } else {
-                    this.y = 1;
+                    this.y = 0;
                 }
                 break;
             case LEFT:
-                if (this.x > 1) {
+                if (this.x > 0) {
                     this.x--;
                 } else {
-                    this.x = w - 1;
+                    this.x = w;
                 }
                 break;
             default:
